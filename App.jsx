@@ -5,6 +5,8 @@ import 'react-native-url-polyfill/auto';
 
 export default function App() {
   return (
-    <RouterProvider router={router} />
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
   );
 }

@@ -6,7 +6,7 @@ import { windowWidth } from './window';
 
 const Header = ({ onSearchChange }) => {
   return (
-    <View style={styles.container}>
+    <View testID='header' style={styles.container}>
       <SearchBar onChange={onSearchChange} />
     </View>
   );

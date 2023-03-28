@@ -33,6 +33,7 @@
         "projectId": "26445cf6-ec23-44d1-b4e9-0475e977f2fe"
       }
     },
-    "owner": "phasza"
+    "owner": "phasza",
+    "plugins": ["@config-plugins/detox"]
   }
 }
