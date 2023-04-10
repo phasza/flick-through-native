@@ -33,7 +33,7 @@ const TVSeriesDetails = () => {
         <>
           <Image
             style={styles.image}
-            src={getImgSrcPath(series.backdrop_path, BackdropSizes.w780)}
+            source={ { uri:  getImgSrcPath(series.backdrop_path, BackdropSizes.w780)} }
           />
           <Text style={styles.text}>{series.name}</Text>
           <Text style={styles.text}>{getYearFromDate(series.first_air_date)}</Text>

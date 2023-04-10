@@ -1,8 +1,17 @@
 import { create } from 'zustand';
 
-import { fetchMultiSearch } from '../../api/tmdbSearchService';
+import { SearchMultiResult, fetchMultiSearch } from '../../api/tmdbSearchService.js';
 
-const useSearchStore = create((set) => ({
+export interface SearchStoreState {
+  searchResult: Map<number, SearchMultiResult>,
+  isLoading: boolean,
+  error: unknown | null,
+  totalPages: number,
+  reset: () => void,
+  fetchBySearch: (query: string, page: number) => Promise<void>
+}
+
+const useSearchStore = create<SearchStoreState>((set) => ({
   searchResult: new Map(),
   isLoading: false,
   error: null,
@@ -19,7 +28,7 @@ const useSearchStore = create((set) => ({
       true
     );
   },
-  fetchBySearch: async (query, page) => {
+  fetchBySearch: async (query: string, page: number) => {
     set({ isLoading: true, error: null });
 
     try {
@@ -37,11 +46,11 @@ const useSearchStore = create((set) => ({
   },
 }));
 
-export const searchResultSelector = (state) => {
+export const searchResultSelector = (state: SearchStoreState) => {
   return Array.from(state.searchResult.values());
 };
 
-export const searchResultByIdSelector = (state, id) => {
+export const searchResultByIdSelector = (state: SearchStoreState, id: number) => {
   return state.searchResult.get(id);
 };
 

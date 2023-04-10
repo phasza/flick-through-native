@@ -3,11 +3,14 @@ import { Text, Pressable, Image, StyleSheet } from 'react-native';
 import { useNavigate, useParams } from 'react-router-native';
 import { getImgSrcPath, PosterSizes } from '../../api/tmdbImage';
 
-import { instanceOfSearchResultMovie } from '../../api/tmdbSearchService';
+import { SearchMultiResult, instanceOfSearchResultMovie } from '../../api/tmdbSearchService';
 import { getPathToMovieDetails, getPathToTVSeriesDetails } from '../../layout/routes';
 
+interface Props {
+  result: SearchMultiResult
+}
 
-const SearchResultCard = ({ result }) => {
+const SearchResultCard = ({ result }: Props) => {
   const { query } = useParams();
 
   if (query === undefined) {
@@ -21,9 +24,9 @@ const SearchResultCard = ({ result }) => {
 
   const handleOnClick = () => {
     if (instanceOfSearchResultMovie(result)) {
-      navigate(getPathToMovieDetails(query, `${result.id}`));
+      navigate(getPathToMovieDetails(query, result.id));
     } else {
-      navigate(getPathToTVSeriesDetails(query, `${result.id}`));
+      navigate(getPathToTVSeriesDetails(query, result.id));
     }
   };
 
@@ -35,7 +38,7 @@ const SearchResultCard = ({ result }) => {
       {result.poster_path !== null ? (
         <Image
           style={styles.image}
-          src={getImgSrcPath(result.poster_path, PosterSizes.w185)}
+          source={{ uri: getImgSrcPath(result.poster_path, PosterSizes.w185) } }
         />
       ) : (
         <Text>{title}</Text>

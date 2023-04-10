@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const useFetchData = (fetch) => {
+const useFetchData = <T,>(fetch: () => Promise<T>) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState(undefined);
+  const [result, setResult] = useState<T | undefined>(undefined);
   const [error, setError] = useState(null);
 
   useEffect(() => {

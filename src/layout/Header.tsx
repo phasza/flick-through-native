@@ -4,10 +4,10 @@ import { StyleSheet, View } from 'react-native';
 import SearchBar from './SearchBar';
 import { windowWidth } from './window';
 
-const Header = ({ onSearchChange }) => {
+const Header = () => {
   return (
     <View testID='header' style={styles.container}>
-      <SearchBar onChange={onSearchChange} />
+      <SearchBar />
     </View>
   );
 };

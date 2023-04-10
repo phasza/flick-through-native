@@ -25,9 +25,9 @@ const MovieDetails = () => {
         <>
           <Image
             style={styles.image}
-            src={getImgSrcPath(result.backdrop_path, BackdropSizes.w780)}
+            source={{ uri: getImgSrcPath(result.backdrop_path, BackdropSizes.w780) }}
           />
-          <Text style={styles.text}>{result.name}</Text>
+          <Text style={styles.text}>{result.title}</Text>
           <Text style={styles.text}>{getYearFromDate(result.release_date)}</Text>
           <Text style={styles.text}>{result.overview}</Text>
           <Text style={styles.text}>{result.original_language}</Text>

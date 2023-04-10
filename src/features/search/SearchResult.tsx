@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Outlet, useParams } from 'react-router-native';
 
 import SearchResultList from './SearchResultList';
-import useSearchStore, { searchResultSelector } from './searchStore';
+import useSearchStore, { SearchStoreState, searchResultSelector } from './searchStore';
 
 const SearchResult = () => {
   const { query } = useParams();

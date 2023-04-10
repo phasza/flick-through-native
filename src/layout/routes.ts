@@ -9,15 +9,15 @@ export const ROUTES = {
 
 export const getPathToRoot = () => ROUTES.ROOT;
 
-export const getPathToSearch = (query) =>
+export const getPathToSearch = (query: string) =>
   generatePath(ROUTES.SEARCH, { query });
 
-export const getPathToMovieDetails = (query, id) =>
+export const getPathToMovieDetails = (query: string, id: number) =>
   generatePath(ROUTES.SEARCH, { query }) +
   '/' +
   generatePath(ROUTES.MOVIE_DETAILS, { id });
 
-export const getPathToTVSeriesDetails = (query, id) =>
+export const getPathToTVSeriesDetails = (query: string, id: number) =>
   generatePath(ROUTES.SEARCH, { query }) +
   '/' +
   generatePath(ROUTES.TV_SERIES_DETAILS, { id });

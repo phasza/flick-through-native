@@ -1,5 +1,5 @@
 // TMDB dates in DB are formatted yyyy-MM-dd
-export const getYearFromDate = (date) => {
+export const getYearFromDate = (date: string) => {
   if (date === '') {
     return date;
   }
@@ -8,7 +8,7 @@ export const getYearFromDate = (date) => {
 };
 
 // TODO locals
-export const formatDate = (date) => {
+export const formatDate = (date: string) => {
   if (date === '') {
     return date;
   }

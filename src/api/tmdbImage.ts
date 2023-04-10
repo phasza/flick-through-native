@@ -19,6 +19,6 @@ export const PosterSizes = {
   original: 'original',
 };
 
-export const getImgSrcPath = (apiResponsePath, size) => {
+export const getImgSrcPath = (apiResponsePath: string, size: string) => {
   return `${baseUrl}/${size}${apiResponsePath}`;
 };

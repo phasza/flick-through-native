@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, LayoutChangeEvent, Text, View } from 'react-native';
 import { windowWidth } from '../../layout/window';
 
 import SearchResultCard from './SearchResultCard';
+import { SearchMultiResult } from '../../api/tmdbSearchService';
 
 const posterSizeWidth = 92;
+
+interface Props {
+  movies: SearchMultiResult[],
+  next: () => void,
+  hasMore: boolean,
+  isLoading: boolean,
+  error: unknown | null
+}
 
 const SearchResultList = ({
   movies,
@@ -12,10 +21,10 @@ const SearchResultList = ({
   hasMore,
   isLoading,
   error,
-}) => {
+}: Props) => {
   const [numColumns, setNumColumns] = useState(1);
 
-  const onLayout = (event) => {
+  const onLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout;
     const numColumns = Math.floor(width / posterSizeWidth);
     setNumColumns(numColumns);
@@ -39,7 +48,7 @@ const SearchResultList = ({
       <FlatList
         data={movies}
         renderItem={({ item }) => <SearchResultCard result={item} />}
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item, index) => `${item.id}`}
         key={numColumns}
         numColumns={numColumns}
         ListEmptyComponent={ getListEmptyComponent }

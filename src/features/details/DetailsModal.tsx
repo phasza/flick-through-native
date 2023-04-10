@@ -1,8 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { Modal, Pressable, Text, StyleSheet, View, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { useNavigate } from 'react-router-native';
 
-const DetailsModal = ({isLoading, error, children}) => {
+interface Props {
+  isLoading: boolean,
+  error: unknown | null,
+  children: ReactNode
+}
+
+const DetailsModal = ({isLoading, error, children}: Props) => {
   const navigate = useNavigate();
 
   const details = useCallback(() => {
@@ -23,7 +29,6 @@ const DetailsModal = ({isLoading, error, children}) => {
 
   return (
     <Modal
-      style={styles.centeredView}
       animationType="slide"
       transparent={true}
       visible={true}>
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     includeFontPadding: false,
     fontSize: 12,
-    fontWeight: 700,
+    fontWeight: '700',
     color: 'rgb(255, 255, 255)'
   },
   details: {
